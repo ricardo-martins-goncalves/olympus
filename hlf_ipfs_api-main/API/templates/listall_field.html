@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    body {
+        background-color: #f2f2f2;
+    }
+    h1{color: #1D84B5; margin-left: 50px}
+    h2{color: #176087; margin-left: 60px}
+    h3{color: #0A2239; margin-left: 70px}
+    h4{color: #132E32; margin-left: 80px}
+    p{color: #0F2428; margin-left: 90px}
+    </style>
+</head>
+<h1><strong>Information by Field</strong></h1>
+<h3>{{ Info }}</h3>
+{%for field_name, field_values in Fields.items%}
+    {%if field_values|length > 0 %}
+        <h2>{{field_name|capfirst}}</h2>
+        {% for field_value in field_values %}
+            <h3><pre>{{field_value}}</pre></h3>
+        {% endfor %}
+        <br> <br>
+    {% endif %}
+{% endfor %}
+
+
+<br><br>
+<br><br>
+<h3>Go to initial page:</h3>
+<p><a href="..">Initial page</a></p>

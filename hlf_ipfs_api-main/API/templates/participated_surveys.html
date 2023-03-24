@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    body {
+        background-color: #f2f2f2;
+    }
+    h1{color: #1D84B5; margin-left: 50px}
+    h2{color: #176087; margin-left: 60px}
+    h3{color: #0A2239; margin-left: 70px}
+    h4{color: #132E32; margin-left: 80px}
+    p{color: #0F2428; margin-left: 90px}
+    a:link { color: #17afbd; }
+    a:visited { color: #119da4; }
+    a:hover { color:  #132e32; }
+    a:active { color: #000000; }
+    </style>
+</head>
+<h1><strong>Surveys</strong></h1>
+<br>
+
+{% for key, value in Surveys.items%}
+    <h2> {{key}} </h2>
+    {% for name, info in value.0.items%}
+        <h3>{{name}}: {{info}}</h3>
+    {% endfor %}
+    <h4>IPFS CID: {{value.1}}</h4>
+
+{%endfor%}
+
+
+<br><br>
+<br><br>
+<h3>Go to initial page:</h3>
+<p><a href="..">Initial page</a></p>

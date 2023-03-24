@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+<style>
+input {
+    text-align: center;
+}
+body{
+    background-color: #f2f2f2;
+    text-align: center;
+}
+    h1{color: #1D84B5}
+    h2{color: #176087}
+    h3{color: #0A2239}
+    h4{color: #132E32}
+    p{color: #0F2428}
+
+input:not([type=submit], [type=checkbox]), select {
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 10%;
+  background-color: #1D84B5;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #1D84B5;
+}
+div {
+  border-radius: 2px;
+
+  padding: 2px;
+}
+</style>
+</head>
+
+<h1>{{ Title }}</h1>
+<form action="" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<h2>Title: {{Survey.ID}}</h2>
+<h3>Description: {{Survey.description}}</h3>
+<h4>Deadline: {{Survey.dealine}}</h4>
+    <br>    <br>
+
+
+<div class="form-group">
+    <label class="col-sm-4 control-label" >{{ form.user_id.label }} </label>
+    <div class="col-sm-8">
+        {{ form.user_id }}
+    </div>
+</div>
+
+
+{%if form.admin_id != None %}
+    <div class="form-group">
+    <label class="col-sm-4 control-label" >{{ form.admin_id.label }} </label>
+    <div class="col-sm-8">
+        {{ form.admin_id }}
+    </div>
+</div>
+{%endif%}
+
+
+<div class="form-group">
+    <label class="col-sm-4 control-label" >{{ form.file.label }} </label>
+    <div class="col-sm-8">
+        {{ form.file }}
+    </div>
+</div>
+<br>
+<div class="form-group">
+    <label class="col-sm-4 control-label" >{{ form.consent.label }} </label>
+    <div class="col-sm-8">
+        {{ form.consent }}
+    </div>
+</div>
+    <br>
+    <br>
+
+
+
+
+{% for field in form %}
+    {%if field.name != "user_id" and field.name != "admin_id" and  field.name != "file" and  field.name != "consent" %}
+        <div class="form-group">
+            <label class="col-sm-4 control-label" >{{ field.label }} </label>
+            <div class="col-sm-8">
+                {{ field }}
+            </div>
+        </div>
+  {%endif%}
+{% endfor %}
+</div>
+<input type="submit" value="Ok">
+</form>

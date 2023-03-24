@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    body {
+        background-color: #f2f2f2;
+    }
+    h1{color: #1D84B5}
+    h2{color: #176087}
+    h3{color: #0A2239}
+    h4{color: #132E32}
+    p{color: #0F2428}
+    </style>
+</head>
+<h1>Successfully {{ Action }} </h1>
+<p><strong>HLF</strong></p>
+{% for key, value in HLF.items %}
+    <p> {{ key }} : {{ value }} </p>
+{% endfor %}
+
+<h2>Go to initial page:</h2>
+<p><a href="..">Initial page</a></p>

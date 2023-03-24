@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    body {
+        background-color: #f2f2f2;
+    }
+    h1{color: #1D84B5; margin-left: 50px}
+    h2{color: #176087; margin-left: 60px}
+    h3{color: #0A2239; margin-left: 70px}
+    h4{color: #132E32; margin-left: 80px}
+    p{color: #0F2428; margin-left: 90px}
+
+    </style>
+</head>
+<h1>Successfully read user</h1>
+<h2>HLF:</h2>
+{% for key, value in User.0.items %}
+    {% if key != "surveys" %}
+        <p>{{ key|title }} : {{ value }}</p>
+    {%else%}
+    <p>{{ key|title }} :
+        {%for survey_id in value%}
+        {{ survey_id }};
+        {%endfor%} </p>
+    {% endif %}
+{% endfor %}
+
+<h2>IPFS:</h2>
+{% for key, value in User.1.items %}
+    {% if key == "public_key" %}
+        {% load qr_code %}
+        <p>{{ key }} : <br> {% qr_from_text value size="T" %} </p>
+    {% else %}
+        <p>{{ key }} : {{ value }}</p>
+    {% endif %}
+{% endfor %}
+
+{% if User.2 != None %}
+    <h2>Hash Confirmation:</h2>
+    <p>{{ User.2 }}</p>
+{% endif %}
+{% if Hash != None %}
+    <h2>IPFS Hash:</h2>
+    <p>{{ Hash }}</p>
+{% endif %}
+<br>
+
+
+<br><br>
+<br><br>
+<h3>Go to initial page:</h3>
+<p><a href="..">Initial page</a></p>

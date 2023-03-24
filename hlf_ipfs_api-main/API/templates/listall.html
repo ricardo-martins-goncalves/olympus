@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    body {
+        background-color: #f2f2f2;
+    }
+    h1{color: #1D84B5; margin-left: 50px}
+    h2{color: #176087; margin-left: 60px}
+    h3{color: #0A2239; margin-left: 70px}
+    h4{color: #132E32; margin-left: 80px}
+    p{color: #0F2428; margin-left: 90px}
+    </style>
+</head>
+<h1><strong>List of All Users</strong></h1>
+<h3>{{ Info }}</h3>
+{% for user in Users %}
+    <h2>User:</h2>
+        <h4>HLF:</h4>
+        {% for key, value in user.0.items %}
+            <p>{{ key }} : {{ value }}</p>
+        {% endfor %}
+        <h4>IPFS:</h4>
+        {% for key, value in user.1.items %}
+            {% if key == "public_key" %}
+                {% load qr_code %}
+                <p>{{ key }} : <br> {% qr_from_text value size="T" %} </p>
+            {% else %}
+                <p>{{ key }} : {{ value }}</p>
+            {% endif %}
+        {% endfor %}
+        {% if user.2 != None %}
+             <h4>Hash Confirmation:</h4>
+             <p>{{ user.2 }}</p>
+        {% endif %}
+<hr>
+{% endfor %}
+
+<br><br>
+<br><br>
+<h3>Go to initial page:</h3>
+<p><a href="..">Initial page</a></p>

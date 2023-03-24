@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    body {
+        background-color: #f2f2f2;
+    }
+    h1{color: #1D84B5; margin-left: 50px}
+    h2{color: #176087; margin-left: 60px}
+    h3{color: #0A2239; margin-left: 70px}
+    h4{color: #132E32; margin-left: 80px}
+    p{color: #0F2428; margin-left: 90px}
+
+    </style>
+</head>
+<h1>Successfully {{ Action }}</h1>
+{%for key, value in Info.items%}
+    <h1>{{key}}</h1>
+    <h4>{{value.0}}</h4>
+    <h4>{{value.1}}</h4>
+    {% for  survey in value.2 %}
+        <h2>Response {{forloop.counter}}</h2>
+        {% for i, j in survey.items %}
+            <h4>{{i}}: {{j}}</h4>
+        {%endfor%}
+    {% endfor%}
+    <hr>
+{% endfor%}
+
+
+<br>
+<br>
+<br>
+<br>
+<h3>Go to initial page:</h3>
+<p><a href="..">Initial page</a></p>
